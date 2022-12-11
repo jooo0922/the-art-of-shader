@@ -1,0 +1,10 @@
+.Footer {
+  padding: 2rem 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.Footer div {
+  font-size: 0.875rem;
+}
