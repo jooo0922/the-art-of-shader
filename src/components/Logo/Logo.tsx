@@ -5,7 +5,7 @@ import styles from "./Logo.module.css";
 const Logo: React.FC = () => {
   return (
     <div className={styles.Logo}>
-      <Link to="/" className={styles.Link}>
+      <Link to="/" className={styles.link}>
         TAOS
       </Link>
     </div>

@@ -7,7 +7,7 @@ const About: React.FC = () => {
   return (
     <div className={styles.About}>
       <Header></Header>
-      <div className={styles.Content}></div>
+      <div className={styles.content}></div>
       <Footer></Footer>
     </div>
   );
