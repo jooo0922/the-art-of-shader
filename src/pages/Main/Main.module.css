@@ -20,4 +20,5 @@
 .Main .content .thumbnailContainer {
   padding: 2rem 0 2.25rem;
   display: grid;
+  row-gap: 1.25rem;
 }
