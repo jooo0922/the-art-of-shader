@@ -1,7 +1,6 @@
-import React from "react";
 import styles from "./MainPageTitle.module.css";
 
-const MainPageTitle: React.FC = () => {
+const MainPageTitle = () => {
   return (
     <div className={styles.MainPageTitle}>
       <div>THE ART</div>

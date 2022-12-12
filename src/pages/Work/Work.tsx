@@ -1,7 +1,6 @@
-import React from "react";
 import styles from "./Work.module.css";
 
-const Work: React.FC = () => {
+const Work = () => {
   return <div className={styles.Work}>Work</div>;
 };
 

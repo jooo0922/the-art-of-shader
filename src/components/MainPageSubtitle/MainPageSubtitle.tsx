@@ -1,7 +1,6 @@
-import React from "react";
 import styles from "./MainPageSubtitle.module.css";
 
-const MainPageSubtitle: React.FC = () => {
+const MainPageSubtitle = () => {
   return (
     <div className={styles.MainPageSubtitle}>
       ARTWORKS WITH GLSL <br />
