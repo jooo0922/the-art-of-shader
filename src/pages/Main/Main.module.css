@@ -7,6 +7,17 @@
   height: 100vh;
 }
 
-.Main .Content {
+.Main .content {
   flex: 1;
+}
+
+.Main .content .titleContainer {
+  padding: 2.25rem 0 2rem;
+  display: grid;
+  row-gap: 2.25rem;
+}
+
+.Main .content .thumbnailContainer {
+  padding: 2rem 0 2.25rem;
+  display: grid;
 }
