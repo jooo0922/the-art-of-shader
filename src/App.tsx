@@ -3,7 +3,7 @@ import "./App.css";
 import Main from "./pages/Main/Main";
 import Work from "./pages/Work/Work";
 import About from "./pages/About/About";
-import THUMBNAIL_DATA from "./pages/Main/thumbnailData";
+import THUMBNAIL_DATA from "./components/Thumbnail/thumbnailData";
 
 const App = () => {
   const workPageRouteObjects = THUMBNAIL_DATA.map((data) => {

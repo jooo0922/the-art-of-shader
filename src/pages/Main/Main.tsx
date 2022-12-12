@@ -3,7 +3,7 @@ import Footer from "../../components/Footer/Footer";
 import MainPageTitle from "../../components/MainPageTitle/MainPageTitle";
 import MainPageSubtitle from "../../components/MainPageSubtitle/MainPageSubtitle";
 import Thumbnail from "../../components/Thumbnail/Thumbnail";
-import THUMBNAIL_DATA from "./thumbnailData";
+import THUMBNAIL_DATA from "../../components/Thumbnail/thumbnailData";
 import styles from "./Main.module.css";
 
 const Main = () => {
