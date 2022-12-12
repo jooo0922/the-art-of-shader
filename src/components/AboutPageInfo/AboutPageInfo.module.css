@@ -1,0 +1,33 @@
+.AboutPageInfo .title {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  opacity: var(--opacity-high-emphasis);
+}
+
+.AboutPageInfo .paragraph {
+  margin-bottom: 2.5rem;
+  opacity: var(--opacity-middle-emphasis);
+}
+
+.AboutPageInfo .email {
+  margin-bottom: 2.5rem;
+}
+
+.AboutPageInfo .email a {
+  font-size: 1.5rem;
+  opacity: var(--opacity-high-emphasis);
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.AboutPageInfo .sns {
+  display: flex;
+  gap: 2rem;
+}
+
+.AboutPageInfo .sns a {
+  font-size: 1.25rem;
+  opacity: var(--opacity-high-emphasis);
+  color: inherit;
+  text-decoration: inherit;
+}
