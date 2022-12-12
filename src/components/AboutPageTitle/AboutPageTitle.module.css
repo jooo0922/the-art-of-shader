@@ -1,0 +1,5 @@
+.AboutPageTitle {
+  font-size: 3rem;
+  font-weight: var(--font-weight-bold);
+  opacity: var(--opacity-high-emphasis);
+}
