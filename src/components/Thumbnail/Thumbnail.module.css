@@ -1,0 +1,30 @@
+.Thumbnail {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.09%;
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
+.Thumbnail .link {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.Thumbnail .title {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-size: 0.875rem;
+  opacity: var(--opacity-high-emphasis);
+}
+
+.Thumbnail img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
