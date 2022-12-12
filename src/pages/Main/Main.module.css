@@ -2,23 +2,24 @@
 /* Mobile - Portrait */
 .Main {
   margin: 0 1rem 0;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
   height: 100vh;
 }
 
 .Main .content {
-  flex: 1;
+  height: 100%;
+  display: grid;
 }
 
 .Main .content .titleContainer {
-  padding: 2.25rem 0 2rem;
+  padding: 2.25rem 0;
   display: grid;
   row-gap: 2.25rem;
 }
 
 .Main .content .thumbnailContainer {
-  padding: 2rem 0 2.25rem;
+  padding: 2.25rem 0;
   display: grid;
   row-gap: 1.25rem;
 }
