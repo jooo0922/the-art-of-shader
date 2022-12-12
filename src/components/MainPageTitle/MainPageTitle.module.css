@@ -4,8 +4,10 @@
 
 .MainPageTitle :nth-child(1) {
   font-size: 3rem;
+  opacity: var(--opacity-high-emphasis);
 }
 
 .MainPageTitle :nth-child(2) {
   font-size: 2.25rem;
+  opacity: var(--opacity-high-emphasis);
 }

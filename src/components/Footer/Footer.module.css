@@ -7,4 +7,5 @@
 
 .Footer div {
   font-size: 0.875rem;
+  opacity: var(--opacity-high-emphasis);
 }

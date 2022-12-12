@@ -1,3 +1,4 @@
 .MainPageSubtitle {
   font-size: 1.25rem;
+  opacity: var(--opacity-high-emphasis);
 }
