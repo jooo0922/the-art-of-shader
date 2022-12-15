@@ -1,3 +1,7 @@
 .Work {
-  
+
+}
+
+.Work .webglCanvas {
+  display: block; /* 이래야 Wrapper Elem 의 height 값이 늘어나지 않음. */
 }
