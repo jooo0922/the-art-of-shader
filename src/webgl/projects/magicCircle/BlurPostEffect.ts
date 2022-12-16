@@ -8,7 +8,10 @@ export default class BlurPostEffect extends THREE.Mesh {
     const material = new THREE.RawShaderMaterial({
       uniforms: {
         resolution: {
-          value: new THREE.Vector2(window.innerWidth, window.innerHeight), // 리사이징될 때마다 윈도우 해상도 값을 업데이트 해줌.
+          value: new THREE.Vector2(
+            document.body.clientWidth,
+            document.body.clientHeight
+          ), // 리사이징될 때마다 윈도우 해상도 값을 업데이트 해줌.
         },
         direction: {
           value: new THREE.Vector2(0, 0), // 가우시안 블러 방향 정의

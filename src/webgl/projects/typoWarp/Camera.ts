@@ -28,7 +28,7 @@ export default class Camera extends THREE.PerspectiveCamera {
   }
 
   init() {
-    this.aspect = window.innerWidth / window.innerHeight;
+    this.aspect = document.body.clientWidth / document.body.clientHeight;
     this.position.set(15, 110, 60);
     this.rotation.set(
       THREE.MathUtils.degToRad(-50), // x축 회전

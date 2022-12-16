@@ -18,7 +18,7 @@ export default class Manager {
 
   // 리사이징 메서드
   private resize(): void {
-    this.resolution.set(window.innerWidth, window.innerHeight);
+    this.resolution.set(document.body.clientWidth, document.body.clientHeight);
     this.webglContent.resize(this.resolution);
   }
 

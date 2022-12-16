@@ -18,7 +18,10 @@ export default class Background extends THREE.Mesh {
           value: 0,
         },
         resolution: {
-          value: new THREE.Vector2(window.innerWidth, window.innerHeight), // 리사이징될 때마다 윈도우 해상도 값을 업데이트 해줌.
+          value: new THREE.Vector2(
+            document.body.clientWidth,
+            document.body.clientHeight
+          ), // 리사이징될 때마다 윈도우 해상도 값을 업데이트 해줌.
         },
         devicePixelRatio: {
           value: 1, // css 픽셀 하나를 그리기 위한 장치 픽셀의 개수. 해상도가 클수록 비례해서 커짐. -> 각 디바이스 해상도에 따른 uv좌표, moveX 값 정규화를 정확하게 계산하기 위함.

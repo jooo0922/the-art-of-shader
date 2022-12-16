@@ -36,7 +36,7 @@ export default class Camera extends THREE.PerspectiveCamera {
   }
 
   init() {
-    this.aspect = window.innerWidth / window.innerHeight;
+    this.aspect = document.body.clientWidth / document.body.clientHeight;
     this.far = 10000;
     this.moveInCameraPath(0); // 카메라 초기 위치값 및 lookAt 값은 시간이 0초일 때의 좌표값으로 각각 초기화함. (시간은 0에서 시작하니까 초기값의 시간값은 0으로 넣어주는 게 맞겠지!ㄴ)
     this.isActive = true;

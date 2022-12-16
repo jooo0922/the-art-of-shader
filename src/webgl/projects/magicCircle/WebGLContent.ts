@@ -96,20 +96,20 @@ export default class WebGLContent {
 
     // 각각의 렌더타겟은 postEffect, 즉, 후처리에 사용하는 렌더타겟이므로, 윈도우 사이즈(=캔버스 사이즈)와 항상 동일해야 함.
     this.renderTarget1 = new THREE.WebGLRenderTarget(
-      window.innerWidth,
-      window.innerHeight
+      document.body.clientWidth,
+      document.body.clientHeight
     );
     this.renderTarget2 = new THREE.WebGLRenderTarget(
-      window.innerWidth,
-      window.innerHeight
+      document.body.clientWidth,
+      document.body.clientHeight
     );
     this.renderTarget3 = new THREE.WebGLRenderTarget(
-      window.innerWidth,
-      window.innerHeight
+      document.body.clientWidth,
+      document.body.clientHeight
     );
     this.renderTarget4 = new THREE.WebGLRenderTarget(
-      window.innerWidth,
-      window.innerHeight
+      document.body.clientWidth,
+      document.body.clientHeight
     );
 
     // 렌더타겟 텍스쳐를 입혀줄 후처리 평면 메쉬 생성

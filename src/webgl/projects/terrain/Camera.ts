@@ -39,7 +39,7 @@ export default class Camera extends THREE.PerspectiveCamera {
   }
 
   init() {
-    this.aspect = window.innerWidth / window.innerHeight;
+    this.aspect = document.body.clientWidth / document.body.clientHeight;
     this.far = 20000; // Background 의 사이즈가 20000*20000 이므로, 카메라 절두체 사이즈도 이에 맞춰준 것.
     // this.position.set(0, 600, 0); // CatmullRomCurve3 커브 경로좌표 그릴 때 설정해주는 카메라 초기값
     this.position.set(200, 0, 200);

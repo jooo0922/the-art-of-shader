@@ -40,7 +40,7 @@ export default class GalaxyManager {
 
   // 리사이징 메서드
   private resize(): void {
-    this.resolution.set(window.innerWidth, window.innerHeight);
+    this.resolution.set(document.body.clientWidth, document.body.clientHeight);
     this.drag.resize(this.resolution);
     this.webglContent.resize(this.resolution);
   }
