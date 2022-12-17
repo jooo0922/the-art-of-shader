@@ -1,7 +1,10 @@
 .Header {
-  padding: 1rem 0 2.25rem;
+  position: fixed;
+  width: calc(100vw - 2rem);
+  padding-top: 1rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  z-index: 999;
 }
