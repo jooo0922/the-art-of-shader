@@ -3,6 +3,8 @@ import WebGLContent from "./WebGLContent";
 import Drag from "./Drag";
 
 export default class StatueManager {
+  private canvas: HTMLCanvasElement;
+
   private webglContent: WebGLContent;
 
   private resolution: THREE.Vector2;
@@ -12,6 +14,7 @@ export default class StatueManager {
   private requestId: number;
 
   constructor(canvas: HTMLCanvasElement) {
+    this.canvas = canvas;
     this.webglContent = new WebGLContent(canvas);
     this.resolution = new THREE.Vector2();
     this.drag = new Drag(this.resolution);
@@ -23,7 +26,7 @@ export default class StatueManager {
     window.addEventListener("resize", this.resize);
 
     // 마우스 이벤트핸들러 등록
-    window.addEventListener("mousedown", this.onMouseDown, {
+    this.canvas.addEventListener("mousedown", this.onMouseDown, {
       // true 일 경우, 콜백함수 내에 preventDefault() 를 무시함.
       // 명시하지 않을 경우, 기본값은 false 지만,
       // wheel, mousewheel, touchstart, touchmove 이벤트에 한해서는 예외적으로 기본값이 true임.
@@ -40,19 +43,19 @@ export default class StatueManager {
        */
       passive: false,
     });
-    window.addEventListener("mousemove", this.onMouseMove, {
+    this.canvas.addEventListener("mousemove", this.onMouseMove, {
       passive: false,
     });
-    window.addEventListener("mouseup", this.onMouseUp);
+    this.canvas.addEventListener("mouseup", this.onMouseUp);
 
     // 터치이벤트 핸들러 등록
-    window.addEventListener("touchstart", this.onTouchStart, {
+    this.canvas.addEventListener("touchstart", this.onTouchStart, {
       passive: false,
     });
-    window.addEventListener("touchmove", this.onTouchMove, {
+    this.canvas.addEventListener("touchmove", this.onTouchMove, {
       passive: false,
     });
-    window.addEventListener("touchend", this.onTouchEnd);
+    this.canvas.addEventListener("touchend", this.onTouchEnd);
   }
 
   // 리사이징 메서드
@@ -106,12 +109,12 @@ export default class StatueManager {
 
   public stop(): void {
     window.removeEventListener("resize", this.resize);
-    window.removeEventListener("mousedown", this.onMouseDown);
-    window.removeEventListener("mousemove", this.onMouseMove);
-    window.removeEventListener("mouseup", this.onMouseUp);
-    window.removeEventListener("touchstart", this.onTouchStart);
-    window.removeEventListener("touchmove", this.onTouchMove);
-    window.removeEventListener("touchend", this.onTouchEnd);
+    this.canvas.removeEventListener("mousedown", this.onMouseDown);
+    this.canvas.removeEventListener("mousemove", this.onMouseMove);
+    this.canvas.removeEventListener("mouseup", this.onMouseUp);
+    this.canvas.removeEventListener("touchstart", this.onTouchStart);
+    this.canvas.removeEventListener("touchmove", this.onTouchMove);
+    this.canvas.removeEventListener("touchend", this.onTouchEnd);
     cancelAnimationFrame(this.requestId);
   }
 
