@@ -17,6 +17,7 @@ const Work = () => {
     initWebGL();
 
     return () => {
+      webglManager.stop();
       webglManager.cleanup();
     };
   });
