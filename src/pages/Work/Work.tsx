@@ -27,6 +27,7 @@ const Work = () => {
   return (
     <div className={styles.Work}>
       <WorkPageHeader></WorkPageHeader>
+      <div className={styles.midContainer}></div>
       <WorkPageInfo pathName={location.pathname}></WorkPageInfo>
       <canvas ref={canvasRef} className={styles.webglCanvas}></canvas>
     </div>

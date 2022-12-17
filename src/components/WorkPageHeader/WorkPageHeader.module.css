@@ -1,5 +1,4 @@
 .WorkPageHeader {
-  position: absolute;
   margin: 0 1rem;
   padding-top: 1rem;
   width: calc(100vw - 2rem); /* position: absolute 설정 시 width 값이 초기화되어 직접 계산해 줌. */
@@ -7,4 +6,5 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;  
+  z-index: 999;
 }
