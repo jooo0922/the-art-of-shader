@@ -43,6 +43,10 @@ export default class WebGLManager {
     await this.manager?.init();
   }
 
+  public stop(): void {
+    this.manager?.stop();
+  }
+
   public cleanup(): void {
     this.manager?.cleanup();
     this.manager = null;

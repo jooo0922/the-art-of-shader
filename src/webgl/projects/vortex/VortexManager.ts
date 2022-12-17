@@ -6,27 +6,30 @@ export default class VortexManager {
 
   private resolution: THREE.Vector2;
 
+  private requestId: number;
+
   constructor(canvas: HTMLCanvasElement) {
     this.webglContent = new WebGLContent(canvas);
     this.resolution = new THREE.Vector2();
+    this.requestId = 0;
   }
 
   // 이벤트 관련 메서드
   private on() {
-    window.addEventListener("resize", this.resize.bind(this));
+    window.addEventListener("resize", this.resize);
   }
 
   // 리사이징 메서드
-  private resize(): void {
+  private resize = () => {
     this.resolution.set(document.body.clientWidth, document.body.clientHeight);
     this.webglContent.resize(this.resolution);
-  }
+  };
 
   // 업데이트 루프 (데이터 관련)
   private update(t: DOMHighResTimeStamp): void {
     let time = t / 1000; // 초 단위
     this.webglContent.update(time);
-    requestAnimationFrame(this.update.bind(this));
+    this.requestId = requestAnimationFrame(this.update.bind(this));
   }
 
   // entry point
@@ -35,6 +38,11 @@ export default class VortexManager {
     this.on();
     this.resize();
     this.update(0);
+  }
+
+  public stop(): void {
+    window.removeEventListener("resize", this.resize);
+    cancelAnimationFrame(this.requestId);
   }
 
   public cleanup(): void {
