@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import Camera from "./Camera";
 import TypoWarp from "./TypoWarp";
+import { ResourceTracker } from "../../utils/ResourceTracker";
 
 export default class WebGLContent {
   renderer: THREE.WebGLRenderer;
@@ -10,6 +11,8 @@ export default class WebGLContent {
   camera: Camera;
 
   warp: TypoWarp;
+
+  resourceTracker: ResourceTracker;
 
   constructor(canvas: HTMLCanvasElement) {
     this.renderer = new THREE.WebGLRenderer({
@@ -23,6 +26,8 @@ export default class WebGLContent {
     this.scene.background = new THREE.Color("#1E1E1E");
     this.camera = new Camera();
     this.warp = new TypoWarp();
+
+    this.resourceTracker = new ResourceTracker();
   }
 
   // 리사이징 메서드
@@ -60,7 +65,14 @@ export default class WebGLContent {
         this.camera.init();
 
         this.scene.add(this.warp);
+
+        this.resourceTracker.track(this.scene);
+        this.resourceTracker.track(this.warp);
       }
     );
+  }
+
+  public cleanup(): void {
+    this.resourceTracker.dispose();
   }
 }

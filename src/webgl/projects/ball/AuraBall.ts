@@ -6,6 +6,7 @@ import AuraPostEffect from "./AuraPostEffect";
 import Aura from "./Aura";
 import Points from "./Points";
 import Drag from "./Drag";
+import { ResourceTracker } from "../../utils/ResourceTracker";
 
 export default class AuraBall extends THREE.Group {
   ball: Ball | undefined;
@@ -26,13 +27,16 @@ export default class AuraBall extends THREE.Group {
 
   isActive: boolean;
 
-  constructor() {
+  resourceTracker: ResourceTracker;
+
+  constructor(resourceTracker: ResourceTracker) {
     super();
     this.name = "AuraBall";
     this.renderTarget1 = new THREE.WebGLRenderTarget(256, 256);
     this.renderTarget2 = new THREE.WebGLRenderTarget(256, 256);
     this.time = 0;
     this.isActive = false;
+    this.resourceTracker = resourceTracker;
   }
 
   init(geometry: THREE.BufferGeometry, noiseTex: THREE.Texture) {
@@ -50,6 +54,14 @@ export default class AuraBall extends THREE.Group {
     this.ball.init(noiseTex);
     this.aura.init(this.renderTarget1.texture, noiseTex);
     this.points.init(noiseTex);
+
+    this.resourceTracker.track(this.ball);
+    this.resourceTracker.track(this.dummy);
+    this.resourceTracker.track(this.auraPostEffect);
+    this.resourceTracker.track(this.aura);
+    this.resourceTracker.track(this.points);
+    this.resourceTracker.track(this.renderTarget1);
+    this.resourceTracker.track(this.renderTarget2);
 
     this.isActive = true;
   }

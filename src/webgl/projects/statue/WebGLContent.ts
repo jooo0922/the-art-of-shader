@@ -5,6 +5,7 @@ import Background from "./Background";
 import Statue from "./Statue";
 import StillLife from "./StillLife";
 import Drag from "./Drag";
+import { ResourceTracker } from "../../utils/ResourceTracker";
 
 export default class WebGLContent {
   renderer: THREE.WebGLRenderer;
@@ -29,6 +30,8 @@ export default class WebGLContent {
 
   icosahedron: StillLife | undefined;
 
+  resourceTracker: ResourceTracker;
+
   constructor(canvas: HTMLCanvasElement) {
     this.renderer = new THREE.WebGLRenderer({
       alpha: true,
@@ -40,6 +43,8 @@ export default class WebGLContent {
     this.scene = new THREE.Scene();
     this.camera = new Camera();
     this.background = new Background();
+
+    this.resourceTracker = new ResourceTracker();
   }
 
   async init() {
@@ -53,7 +58,21 @@ export default class WebGLContent {
       this.initObjects();
       this.transformObjects();
       this.addObjects();
+
+      this.resourceTracker.track(this.scene);
+      this.resourceTracker.track(this.background);
+      this.resourceTracker.track(this.statue);
+      this.resourceTracker.track(this.cherry);
+      this.resourceTracker.track(this.leaf);
+      this.resourceTracker.track(this.sphere);
+      this.resourceTracker.track(this.cube);
+      this.resourceTracker.track(this.cylinder);
+      this.resourceTracker.track(this.icosahedron);
     });
+  }
+
+  public cleanup(): void {
+    this.resourceTracker.dispose();
   }
 
   // 리사이징 메서드

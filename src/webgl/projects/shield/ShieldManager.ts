@@ -36,4 +36,8 @@ export default class ShieldManager {
     this.resize();
     this.update(0);
   }
+
+  public cleanup(): void {
+    this.webglContent.cleanup();
+  }
 }

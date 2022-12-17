@@ -7,13 +7,18 @@ const Work = () => {
   const canvasRef = useRef(null);
   const location = useLocation();
   useEffect(() => {
+    let webglManager: WebGLManager;
     async function initWebGL(): Promise<void> {
-      const canvas = canvasRef.current;
-      const webglManager = new WebGLManager(canvas);
-      webglManager.setPathName(location.pathname);
+      const canvas: HTMLCanvasElement | null = canvasRef.current;
+      if (canvas) webglManager = new WebGLManager(canvas);
+      webglManager.setManager(location.pathname);
       await webglManager.init();
     }
     initWebGL();
+
+    return () => {
+      webglManager.cleanup();
+    };
   });
 
   return (

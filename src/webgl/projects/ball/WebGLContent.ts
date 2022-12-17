@@ -5,6 +5,7 @@ import CameraAura from "./CameraAura";
 import AuraBall from "./AuraBall";
 import Background from "./Background";
 import Drag from "./Drag";
+import { ResourceTracker } from "../../utils/ResourceTracker";
 
 export default class WebGLContent {
   renderer: THREE.WebGLRenderer;
@@ -21,6 +22,8 @@ export default class WebGLContent {
 
   background: Background;
 
+  resourceTracker: ResourceTracker;
+
   constructor(canvas: HTMLCanvasElement) {
     this.renderer = new THREE.WebGLRenderer({
       alpha: true,
@@ -30,11 +33,13 @@ export default class WebGLContent {
     this.renderer.setPixelRatio(window.devicePixelRatio);
     this.renderer.setClearColor(0x000000, 1.0);
 
+    this.resourceTracker = new ResourceTracker();
+
     this.scene = new THREE.Scene();
     this.sceneAura = new THREE.Scene();
     this.camera = new Camera();
     this.cameraAura = new CameraAura();
-    this.auraBall = new AuraBall();
+    this.auraBall = new AuraBall(this.resourceTracker);
     this.background = new Background();
   }
 
@@ -89,6 +94,14 @@ export default class WebGLContent {
 
       this.scene.add(this.auraBall);
       this.scene.add(this.background);
+
+      this.resourceTracker.track(this.scene);
+      this.resourceTracker.track(this.sceneAura);
+      this.resourceTracker.track(this.background);
     });
+  }
+
+  public cleanup(): void {
+    this.resourceTracker.dispose();
   }
 }

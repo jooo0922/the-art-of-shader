@@ -6,6 +6,7 @@ import RedStars from "./RedStars";
 import BlueStars from "./BlueStars";
 import BlackStars from "./BlackStars";
 import Fog from "./Fog";
+import { ResourceTracker } from "../../utils/ResourceTracker";
 
 export default class WebGLContent {
   renderer: THREE.WebGLRenderer;
@@ -26,6 +27,8 @@ export default class WebGLContent {
 
   fog: Fog;
 
+  resourceTracker: ResourceTracker;
+
   constructor(canvas: HTMLCanvasElement) {
     this.renderer = new THREE.WebGLRenderer({
       alpha: true,
@@ -42,6 +45,8 @@ export default class WebGLContent {
     this.blueStars = new BlueStars();
     this.blackStars = new BlackStars();
     this.fog = new Fog();
+
+    this.resourceTracker = new ResourceTracker();
   }
 
   // 리사이징 메서드
@@ -112,6 +117,18 @@ export default class WebGLContent {
       // );
       // this.scene.add(line);
       // this.scene.add(points);
+
+      this.resourceTracker.track(this.scene);
+      this.resourceTracker.track(this.background);
+      this.resourceTracker.track(this.terrain);
+      this.resourceTracker.track(this.redStars);
+      this.resourceTracker.track(this.blueStars);
+      this.resourceTracker.track(this.blackStars);
+      this.resourceTracker.track(this.fog);
     });
+  }
+
+  public cleanup(): void {
+    this.resourceTracker.dispose();
   }
 }

@@ -9,10 +9,13 @@ export default class BallManager {
 
   private drag: Drag;
 
+  private requestId: number;
+
   constructor(canvas: HTMLCanvasElement) {
     this.webglContent = new WebGLContent(canvas);
     this.resolution = new THREE.Vector2();
     this.drag = new Drag(this.resolution);
+    this.requestId = 0;
   }
 
   // 이벤트 관련 메서드
@@ -61,6 +64,8 @@ export default class BallManager {
 
   // 마우스 이벤트핸들러
   private onMouseDown(e: MouseEvent) {
+    console.log("마우스 클릭");
+
     this.drag.touchStart(e);
   }
 
@@ -90,7 +95,8 @@ export default class BallManager {
     let time = t / 1000; // 초 단위
     this.drag.update();
     this.webglContent.update(time, this.drag);
-    requestAnimationFrame(this.update.bind(this));
+    this.requestId = requestAnimationFrame(this.update.bind(this));
+    // console.log("애니메이션 루프");
   }
 
   // entry point
@@ -99,5 +105,13 @@ export default class BallManager {
     this.on();
     this.resize();
     this.update(0);
+  }
+
+  public stop(): void {
+    cancelAnimationFrame(this.requestId);
+  }
+
+  public cleanup(): void {
+    this.webglContent.cleanup();
   }
 }

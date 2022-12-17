@@ -36,4 +36,8 @@ export default class VortexManager {
     this.resize();
     this.update(0);
   }
+
+  public cleanup(): void {
+    this.webglContent.cleanup();
+  }
 }

@@ -6,6 +6,7 @@ import BlurPostEffect from "./BlurPostEffect";
 import BrightPostEffect from "./BrightPostEffect";
 import Camera from "./Camera";
 import Shield from "./Shield";
+import { ResourceTracker } from "../../utils/ResourceTracker";
 
 export default class WebGLContent {
   public renderer: THREE.WebGLRenderer;
@@ -37,6 +38,8 @@ export default class WebGLContent {
   public bloomPostEffect: BloomPostEffect;
 
   public controls: OrbitControls;
+
+  public resourceTracker: ResourceTracker;
 
   constructor(canvas: HTMLCanvasElement) {
     this.renderer = new THREE.WebGLRenderer({
@@ -83,6 +86,8 @@ export default class WebGLContent {
     this.controls.enablePan = false;
     this.controls.enableZoom = false;
     this.controls.target.set(0, 0, 0);
+
+    this.resourceTracker = new ResourceTracker();
   }
 
   // 리사이징 메서드
@@ -205,6 +210,22 @@ export default class WebGLContent {
 
       this.blurPostEffectX.setDirection(1, 0); // 가우시안 블러의 방향을 수평방향으로 지정한 postEffect 평면
       this.blurPostEffectY.setDirection(0, 1); // 가우시안 블러의 방향을 수직방향으로 지정한 postEffect 평면
+
+      this.resourceTracker.track(this.scene);
+      this.resourceTracker.track(this.rtScene);
+      this.resourceTracker.track(this.shield);
+      this.resourceTracker.track(this.renderTarget1);
+      this.resourceTracker.track(this.renderTarget2);
+      this.resourceTracker.track(this.renderTarget3);
+      this.resourceTracker.track(this.renderTarget4);
+      this.resourceTracker.track(this.brightPostEffect);
+      this.resourceTracker.track(this.blurPostEffectX);
+      this.resourceTracker.track(this.blurPostEffectY);
+      this.resourceTracker.track(this.bloomPostEffect);
     });
+  }
+
+  public cleanup(): void {
+    this.resourceTracker.dispose();
   }
 }

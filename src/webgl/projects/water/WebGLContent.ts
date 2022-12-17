@@ -3,6 +3,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import Background from "./Background";
 import Camera from "./Camera";
 import Water from "./Water";
+import { ResourceTracker } from "../../utils/ResourceTracker";
 
 export default class WebGLContent {
   renderer: THREE.WebGLRenderer;
@@ -16,6 +17,8 @@ export default class WebGLContent {
   background: Background;
 
   controls: OrbitControls;
+
+  resourceTracker: ResourceTracker;
 
   constructor(canvas: HTMLCanvasElement) {
     this.renderer = new THREE.WebGLRenderer({
@@ -35,6 +38,8 @@ export default class WebGLContent {
     this.controls.enableDamping = true;
     this.controls.enablePan = false;
     this.controls.enableZoom = false;
+
+    this.resourceTracker = new ResourceTracker();
   }
 
   // 리사이징 메서드
@@ -74,7 +79,15 @@ export default class WebGLContent {
 
           this.scene.add(this.water);
           this.scene.add(this.background);
+
+          this.resourceTracker.track(this.scene);
+          this.resourceTracker.track(this.water);
+          this.resourceTracker.track(this.background);
         }
       );
+  }
+
+  public cleanup(): void {
+    this.resourceTracker.dispose();
   }
 }
