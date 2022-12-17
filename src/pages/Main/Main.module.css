@@ -3,23 +3,22 @@
 .Main {
   margin: 0 1rem 0;
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: 1fr auto;
   height: 100vh;
 }
 
 .Main .content {
-  height: 100%;
+  padding: 7rem 0 4rem;
   display: grid;
+  row-gap: 4rem;
 }
 
 .Main .content .titleContainer {
-  padding: 2.25rem 0;
   display: grid;
   row-gap: 2.25rem;
 }
 
 .Main .content .thumbnailContainer {
-  padding: 2.25rem 0;
   display: grid;
   row-gap: 1.25rem;
 }
