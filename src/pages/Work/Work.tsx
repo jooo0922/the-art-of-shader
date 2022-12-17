@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
+import WorkPageHeader from "../../components/WorkPageHeader/WorkPageHeader";
+import WorkPageInfo from "../../components/WorkPageInfo/WorkPageInfo";
 import WebGLManager from "../../webgl/WebGLManager";
 import styles from "./Work.module.css";
 
@@ -24,6 +26,8 @@ const Work = () => {
 
   return (
     <div className={styles.Work}>
+      <WorkPageHeader></WorkPageHeader>
+      <WorkPageInfo pathName={location.pathname}></WorkPageInfo>
       <canvas ref={canvasRef} className={styles.webglCanvas}></canvas>
     </div>
   );
