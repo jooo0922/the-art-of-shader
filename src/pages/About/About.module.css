@@ -3,16 +3,13 @@
 .About {
   margin: 0 1rem 0;
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: 1fr auto;
   height: 100vh;
 }
 
 .About .content {
-  height: 100%;
-  display: grid;
-  grid-template-rows: 1fr 1.3fr;
-}
-
-.About .content :nth-child(1) {
-  align-self: center;
+  padding-top: 7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
 }
