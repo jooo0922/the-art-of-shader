@@ -50,3 +50,61 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Media query */
+
+/* Mobile - Galaxy Fold */
+@media only screen and (min-width: 0px) and (orientation: portrait) {
+  html {
+    font-size: 12px;
+  }
+}
+
+/* Mobile - Portrait */
+@media only screen and (min-width: 360px) and (orientation: portrait) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/* Mobile - Landscape */
+@media only screen and (min-width: 480px) and (orientation: landscape) {
+  html {
+    font-size: 8px;
+  }
+}
+
+/* Tablet - Portrait */
+@media only screen and (min-width: 768px) and (orientation: portrait) {
+  html {
+    font-size: 20px;
+  }
+}
+
+/* Tablet - Landscape */
+@media only screen and (min-width: 992px) and (orientation: landscape) {
+  html {
+    font-size: 12px;
+  }
+}
+
+/* Laptops */
+@media only screen and (min-width: 1200px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+/* Desktop FHD */
+@media only screen and (min-width: 1920px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/* Desktop UHD (and larger) */
+@media only screen and (min-width: 2560px) {
+  html {
+    font-size: 20px;
+  }
+}
