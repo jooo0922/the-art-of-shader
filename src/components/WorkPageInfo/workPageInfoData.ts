@@ -34,7 +34,7 @@ const WORK_PAGE_INFO_DATA: WorkPageInfoDataType[] = [
     pathName: "/terrain",
   },
   {
-    title: "SHIELD",
+    title: "SCI-FI SHIELD",
     date: "2022.12.04",
     referenceUrl: "https://www.youtube.com/watch?app=desktop&v=i2w0p_mV8_g",
     pathName: "/shield",

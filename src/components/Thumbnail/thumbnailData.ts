@@ -37,7 +37,7 @@ const THUMBNAIL_DATA: ThumbnailDataType[] = [
     pathName: "/terrain",
   },
   {
-    title: "SHIELD",
+    title: "SCI-FI SHIELD",
     imageUrl: shield,
     pathName: "/shield",
   },
