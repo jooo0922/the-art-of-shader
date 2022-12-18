@@ -3,3 +3,12 @@
   font-weight: var(--font-weight-bold);
   opacity: var(--opacity-high-emphasis);
 }
+
+/* Media query */
+
+/* landscape */
+@media only screen and (orientation: landscape) {
+  .AboutPageTitle {
+    font-size: 6rem;
+  }
+}

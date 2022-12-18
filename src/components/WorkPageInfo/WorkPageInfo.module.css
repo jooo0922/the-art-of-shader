@@ -30,3 +30,28 @@
   color: inherit;
   text-decoration: inherit;
 }
+
+/* Media query */
+
+/* landscape */
+@media only screen and (orientation: landscape) {
+  .WorkPageInfo {
+    margin: 0 2rem;
+    width: calc(100vw - 4rem);
+    padding-bottom: 2rem;
+  }
+  
+  .WorkPageInfo .title {
+    font-size: 4.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .WorkPageInfo .date {
+    margin-bottom: 0.5rem;  
+  }
+  
+  .WorkPageInfo .date,
+  .WorkPageInfo .reference {
+    font-size: 1rem;
+  }
+}

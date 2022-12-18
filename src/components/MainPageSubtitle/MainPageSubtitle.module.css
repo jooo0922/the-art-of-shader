@@ -2,3 +2,12 @@
   font-size: 1.25rem;
   opacity: var(--opacity-high-emphasis);
 }
+
+/* Media query */
+
+/* landscape */
+@media only screen and (orientation: landscape) {
+  .MainPageSubtitle {
+    font-size: 1.5rem;
+  }  
+}

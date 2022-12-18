@@ -8,3 +8,13 @@
   align-items: center;
   z-index: 999;
 }
+
+/* Media query */
+
+/* landscape */
+@media only screen and (orientation: landscape) {
+  .Header {
+    width: 80%;
+    padding-top: 3rem;
+  }
+}

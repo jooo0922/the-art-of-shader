@@ -19,3 +19,12 @@
   width: 1.5rem;
   height: 1.5rem;
 }
+
+/* Media query */
+
+/* landscape */
+@media only screen and (orientation: landscape) {
+  .BackBtn {
+    font-size: 1.5rem;
+  }
+}

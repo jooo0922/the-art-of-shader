@@ -8,3 +8,14 @@
   align-items: center;  
   z-index: 999;
 }
+
+/* Media query */
+
+/* landscape */
+@media only screen and (orientation: landscape) {
+  .WorkPageHeader {
+    margin: 0 2rem;
+    padding-top: 3rem;
+    width: calc(100vw - 4rem); /* position: absolute 설정 시 width 값이 초기화되어 직접 계산해 줌. */
+  }
+}

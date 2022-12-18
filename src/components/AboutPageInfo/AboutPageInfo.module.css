@@ -31,3 +31,33 @@
   color: inherit;
   text-decoration: inherit;
 }
+
+/* Media query */
+
+/* landscape */
+@media only screen and (orientation: landscape) {
+  .AboutPageInfo .title {
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+  }
+  
+  .AboutPageInfo .paragraph {
+    margin-bottom: 4rem;
+  }
+  
+  .AboutPageInfo .email {
+    margin-bottom: 4rem;
+  }
+  
+  .AboutPageInfo .email a {
+    font-size: 3rem;
+  }
+  
+  .AboutPageInfo .sns {
+    gap: 2.75rem;
+  }
+  
+  .AboutPageInfo .sns a {
+    font-size: 1.5rem;
+  }
+}

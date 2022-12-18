@@ -1,5 +1,4 @@
 /* Default CSS */
-/* Mobile - Portrait */
 .About {
   margin: 0 1rem 0;
   display: grid;
@@ -9,7 +8,24 @@
 
 .About .content {
   padding-top: 7rem;
-  display: flex;
-  flex-direction: column;
-  gap: 4rem;
+  display: grid;
+  grid-template-rows: max-content;
+  row-gap: 4rem;
+}
+
+/* Media query */
+
+/* landscape */
+@media only screen and (orientation: landscape) {
+  .About {
+    margin: 0 10% 0;
+  }
+
+  .About .content {
+    padding-top: 4.75rem;
+    grid-template-columns: 7fr 5fr;
+    grid-template-rows: initial;
+    row-gap: initial;  
+    align-items: center;
+  }
 }

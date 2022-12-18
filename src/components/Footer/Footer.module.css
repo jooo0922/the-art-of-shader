@@ -9,3 +9,18 @@
   font-size: 0.875rem;
   opacity: var(--opacity-high-emphasis);
 }
+
+/* Media query */
+
+/* landscape */
+@media only screen and (orientation: landscape) {
+  .Footer {
+    padding-bottom: 3.75rem;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .Footer div {
+    font-size: 1rem;
+  }
+}
