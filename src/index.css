@@ -6,6 +6,7 @@
   /* opacity */
   --opacity-high-emphasis: 0.87;
   --opacity-middle-emphasis: 0.6;
+  --opacity-min: 0;
 
   /* font family */
   --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -15,6 +16,9 @@
   /* font weight */
   --font-weight-bold: 700;
   --font-weight-regular: 400;
+
+  /* transition */
+  --transition-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 * {
