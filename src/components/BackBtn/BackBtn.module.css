@@ -18,6 +18,11 @@
 .BackBtn .container img {
   width: 1.5rem;
   height: 1.5rem;
+  transition: transform 600ms var(--transition-ease-out-quart);
+}
+
+.BackBtn .container:hover img {
+  transform: translateX(-0.5rem);
 }
 
 /* Media query */
