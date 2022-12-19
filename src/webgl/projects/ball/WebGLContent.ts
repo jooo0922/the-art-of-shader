@@ -24,17 +24,9 @@ export default class WebGLContent {
 
   resourceTracker: ResourceTracker;
 
-  constructor(canvas: HTMLCanvasElement) {
-    this.renderer = new THREE.WebGLRenderer({
-      alpha: true,
-      canvas: canvas,
-      antialias: true,
-    });
-    this.renderer.setPixelRatio(window.devicePixelRatio);
-    this.renderer.setClearColor(0x000000, 1.0);
-
+  constructor(renderer: THREE.WebGLRenderer) {
+    this.renderer = renderer;
     this.resourceTracker = new ResourceTracker();
-
     this.scene = new THREE.Scene();
     this.sceneAura = new THREE.Scene();
     this.camera = new Camera();
@@ -103,5 +95,7 @@ export default class WebGLContent {
 
   public cleanup(): void {
     this.resourceTracker.dispose();
+    this.renderer.dispose();
+    this.renderer.clear();
   }
 }

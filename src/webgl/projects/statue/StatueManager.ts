@@ -13,9 +13,9 @@ export default class StatueManager {
 
   private requestId: number;
 
-  constructor(canvas: HTMLCanvasElement) {
-    this.canvas = canvas;
-    this.webglContent = new WebGLContent(canvas);
+  constructor(renderer: THREE.WebGLRenderer) {
+    this.canvas = renderer.domElement;
+    this.webglContent = new WebGLContent(renderer);
     this.resolution = new THREE.Vector2();
     this.drag = new Drag(this.resolution);
     this.requestId = 0;

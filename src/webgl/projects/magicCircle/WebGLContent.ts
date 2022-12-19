@@ -66,12 +66,13 @@ export default class WebGLContent {
 
   resourceTracker: ResourceTracker;
 
-  constructor(canvas: HTMLCanvasElement) {
+  constructor(renderer: THREE.WebGLRenderer) {
     this.renderer = new THREE.WebGLRenderer({
       alpha: true,
-      canvas: canvas,
+      canvas: renderer.domElement,
       antialias: true,
-      logarithmicDepthBuffer: true, // 카메라를 멀리 당겼을 때 캐릭터 모델에 z-fighting 현상 발생 해결하기 위한 옵션 -> 좀 더 리서치한 뒤 하단에 필기 내용 정리
+      logarithmicDepthBuffer: true, // 카메라를 멀리 당겼을 때 캐릭터 모델에 z-fighting 현상 발생 해결하기 위한 옵션.
+      // 이 마지막 옵션을 예외적으로 설정해줘야 하므로, MagicCircle 아트웍만 렌더러를 따로 만들어 사용하기로 함.
     });
     this.renderer.setPixelRatio(window.devicePixelRatio);
 
@@ -334,6 +335,8 @@ export default class WebGLContent {
 
   public cleanup(): void {
     this.resourceTracker.dispose();
+    this.renderer.dispose(); // 렌더러를 별도로 만들었기 때문에 페이지 이동 시 별도로 생성한 렌더러를 폐기해줘야 함.
+    this.renderer.clear();
   }
 }
 

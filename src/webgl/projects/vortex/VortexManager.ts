@@ -8,8 +8,8 @@ export default class VortexManager {
 
   private requestId: number;
 
-  constructor(canvas: HTMLCanvasElement) {
-    this.webglContent = new WebGLContent(canvas);
+  constructor(renderer: THREE.WebGLRenderer) {
+    this.webglContent = new WebGLContent(renderer);
     this.resolution = new THREE.Vector2();
     this.requestId = 0;
   }

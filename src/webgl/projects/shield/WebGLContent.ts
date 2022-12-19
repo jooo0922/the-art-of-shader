@@ -41,14 +41,8 @@ export default class WebGLContent {
 
   public resourceTracker: ResourceTracker;
 
-  constructor(canvas: HTMLCanvasElement) {
-    this.renderer = new THREE.WebGLRenderer({
-      alpha: true,
-      canvas: canvas,
-      antialias: true,
-    });
-    this.renderer.setPixelRatio(window.devicePixelRatio);
-
+  constructor(renderer: THREE.WebGLRenderer) {
+    this.renderer = renderer;
     this.scene = new THREE.Scene(); // 렌더타겟 텍스쳐가 입혀진 평면을 담는 scene
     this.rtScene = new THREE.Scene(); // 렌더타겟에 그리는 실제 장면을 담는 scene
     this.rtScene.background = new THREE.Color(0, 0, 0);
@@ -227,5 +221,7 @@ export default class WebGLContent {
 
   public cleanup(): void {
     this.resourceTracker.dispose();
+    this.renderer.dispose();
+    this.renderer.clear();
   }
 }

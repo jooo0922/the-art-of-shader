@@ -38,13 +38,9 @@ export default class WebGLContent {
 
   resourceTracker: ResourceTracker;
 
-  constructor(canvas: HTMLCanvasElement) {
-    this.renderer = new THREE.WebGLRenderer({
-      alpha: true,
-      canvas: canvas,
-      antialias: true,
-    });
-    this.renderer.setPixelRatio(window.devicePixelRatio);
+  constructor(renderer: THREE.WebGLRenderer) {
+    this.renderer = renderer;
+
     // 각각의 렌더타겟은 postEffect, 즉, 후처리에 사용하는 렌더타겟이므로, 윈도우 사이즈(=캔버스 사이즈)와 항상 동일해야 함.
     this.renderTarget1 = new THREE.WebGLRenderTarget(
       document.body.clientWidth,
@@ -166,5 +162,7 @@ export default class WebGLContent {
 
   public cleanup(): void {
     this.resourceTracker.dispose();
+    this.renderer.dispose();
+    this.renderer.clear();
   }
 }
