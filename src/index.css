@@ -21,6 +21,7 @@
   --transition-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
   --transition-ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
   --transition-ease-out-back: cubic-bezier(0.175, 0.885, 0.320, 1.275);
+  --transition-ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.23, 0.955);
 }
 
 * {
