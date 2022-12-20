@@ -1,11 +1,14 @@
-import { useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 import WorkPageHeader from "../../components/WorkPageHeader/WorkPageHeader";
 import WorkPageInfo from "../../components/WorkPageInfo/WorkPageInfo";
+import Loader from "../../components/Loader/Loader";
 import WebGLManager from "../../webgl/WebGLManager";
 import styles from "./Work.module.css";
 
 const Work = () => {
+  const [showLoader, setShowLoader] = useState(true);
   const canvasRef = useRef(null);
   const location = useLocation();
   useEffect(() => {
@@ -15,6 +18,7 @@ const Work = () => {
       if (canvas) webglManager = new WebGLManager(canvas);
       webglManager.setManager(location.pathname);
       await webglManager.init();
+      setShowLoader(false);
     }
     initWebGL();
 
@@ -29,6 +33,7 @@ const Work = () => {
       <WorkPageHeader></WorkPageHeader>
       <div className={styles.midContainer}></div>
       <WorkPageInfo pathName={location.pathname}></WorkPageInfo>
+      <AnimatePresence>{showLoader && <Loader></Loader>}</AnimatePresence>
       <canvas ref={canvasRef} className={styles.webglCanvas}></canvas>
     </div>
   );
