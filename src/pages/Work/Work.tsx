@@ -26,7 +26,7 @@ const Work = () => {
       webglManager.stop();
       webglManager.cleanup();
     };
-  });
+  }, []);
 
   return (
     <div className={styles.Work}>
