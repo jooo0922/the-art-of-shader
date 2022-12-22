@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import BloomPostEffect from "./BloomPostEffect";
 import BlurPostEffect from "./BlurPostEffect";
 import BrightPostEffect from "./BrightPostEffect";
@@ -177,18 +177,21 @@ export default class WebGLContent {
   }
 
   public async init(): Promise<void> {
-    const objLoader = new OBJLoader();
-    const texLoader = new THREE.TextureLoader();
+    const gltfLoader = new GLTFLoader();
     await Promise.all([
-      objLoader.loadAsync("./models/shield/shield.obj"),
-      texLoader.loadAsync("./images/shield/shield.png"),
+      gltfLoader.loadAsync("./models/shield/shield.glb"),
     ]).then((response) => {
-      const shieldGeometry = (response[0].children[0] as THREE.Mesh).geometry;
-      const hexagonTex = response[1];
+      const gltf = response[0];
+      const shieldMesh = gltf.scene.children[0] as THREE.Mesh<
+        THREE.BufferGeometry,
+        THREE.MeshStandardMaterial
+      >;
+      const shieldGeometry = shieldMesh.geometry;
+      const hexagonTex = shieldMesh.material.map;
 
       this.shield = new Shield(shieldGeometry);
       this.shield.init();
-      this.shield.setTexture(hexagonTex);
+      if (hexagonTex) this.shield.setTexture(hexagonTex);
 
       this.rtCamera.init();
 
@@ -205,6 +208,7 @@ export default class WebGLContent {
       this.blurPostEffectX.setDirection(1, 0); // 가우시안 블러의 방향을 수평방향으로 지정한 postEffect 평면
       this.blurPostEffectY.setDirection(0, 1); // 가우시안 블러의 방향을 수직방향으로 지정한 postEffect 평면
 
+      this.resourceTracker.track(gltf.scene);
       this.resourceTracker.track(this.scene);
       this.resourceTracker.track(this.rtScene);
       this.resourceTracker.track(this.shield);

@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { Water } from "three/examples/jsm/objects/Water";
 import BrightPostEffect from "./BrightPostEffect";
 import BlurPostEffect from "./BlurPostEffect";
@@ -177,11 +177,11 @@ export default class WebGLContent {
   }
 
   async init() {
-    const objLoader = new OBJLoader();
+    const gltfLoader = new GLTFLoader();
     const texLoader = new THREE.TextureLoader();
     const cubeTexLoader = new THREE.CubeTextureLoader();
     await Promise.all([
-      objLoader.loadAsync("./models/forceField/castle.obj"),
+      gltfLoader.loadAsync("./models/forceField/castle.glb"),
       texLoader.loadAsync("./images/noise/noise1.png"),
       cubeTexLoader
         .setPath("./images/forceField/cubemap/")
@@ -189,7 +189,8 @@ export default class WebGLContent {
       texLoader.loadAsync("./images/forceField/normTex.png"),
       texLoader.loadAsync("./images/forceField/fog.png"),
     ]).then((response) => {
-      const castleGeometry = (response[0].children[0] as THREE.Mesh).geometry;
+      const gltf = response[0];
+      const castleGeometry = (gltf.scene.children[0] as THREE.Mesh).geometry;
       const noiseTex = response[1];
       const cubeTex = response[2];
       const normTex = response[3];
@@ -240,6 +241,7 @@ export default class WebGLContent {
       this.blurPostEffectX.setDirection(1, 0); // 가우시안 블러의 방향을 수평방향으로 지정한 postEffect 평면
       this.blurPostEffectY.setDirection(0, 1); // 가우시안 블러의 방향을 수직방향으로 지정한 postEffect 평면
 
+      this.resourceTracker.track(gltf.scene);
       this.resourceTracker.track(this.scene);
       this.resourceTracker.track(this.rtScene);
       this.resourceTracker.track(this.dome);

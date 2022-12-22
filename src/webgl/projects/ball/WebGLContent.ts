@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import Camera from "./Camera";
 import CameraAura from "./CameraAura";
 import AuraBall from "./AuraBall";
@@ -66,13 +66,14 @@ export default class WebGLContent {
   }
 
   async init() {
-    const objLoader = new OBJLoader();
+    const gltfLoader = new GLTFLoader();
     const texLoader = new THREE.TextureLoader();
     await Promise.all([
-      objLoader.loadAsync("./models/ball/volleyball.obj"),
+      gltfLoader.loadAsync("./models/ball/volleyball.glb"),
       texLoader.loadAsync("./images/noise/noise1.png"),
     ]).then((response) => {
-      const ballGeometry = (response[0].children[0] as THREE.Mesh).geometry;
+      const gltf = response[0];
+      const ballGeometry = (gltf.scene.children[0] as THREE.Mesh).geometry;
       const noiseTex = response[1];
 
       noiseTex.wrapS = THREE.RepeatWrapping;
@@ -87,6 +88,7 @@ export default class WebGLContent {
       this.scene.add(this.auraBall);
       this.scene.add(this.background);
 
+      this.resourceTracker.track(gltf.scene);
       this.resourceTracker.track(this.scene);
       this.resourceTracker.track(this.sceneAura);
       this.resourceTracker.track(this.background);

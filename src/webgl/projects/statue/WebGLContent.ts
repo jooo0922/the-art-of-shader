@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
+import { GLTF, GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import Camera from "./Camera";
 import Background from "./Background";
 import Statue from "./Statue";
@@ -41,17 +41,20 @@ export default class WebGLContent {
   }
 
   async init() {
-    const objLoader = new OBJLoader();
+    const gltfLoader = new GLTFLoader();
     await Promise.all([
-      objLoader.loadAsync("./models/statue/venus.obj"),
-      objLoader.loadAsync("./models/statue/cherry.obj"),
-      objLoader.loadAsync("./models/statue/leaf.obj"),
+      gltfLoader.loadAsync("./models/statue/venus.glb"),
+      gltfLoader.loadAsync("./models/statue/cherry.glb"),
+      gltfLoader.loadAsync("./models/statue/leaf.glb"),
     ]).then((response) => {
       this.createObjects(response);
       this.initObjects();
       this.transformObjects();
       this.addObjects();
 
+      this.resourceTracker.track(response[0].scene);
+      this.resourceTracker.track(response[1].scene);
+      this.resourceTracker.track(response[2].scene);
       this.resourceTracker.track(this.scene);
       this.resourceTracker.track(this.background);
       this.resourceTracker.track(this.statue);
@@ -100,10 +103,12 @@ export default class WebGLContent {
     this.renderer.render(this.scene, this.camera);
   }
 
-  private createObjects(response: [THREE.Group, THREE.Group, THREE.Group]) {
-    const statueGeometry = (response[0].children[0] as THREE.Mesh).geometry;
-    const cherryGeometry = (response[1].children[0] as THREE.Mesh).geometry;
-    const leafGeometry = (response[2].children[0] as THREE.Mesh).geometry;
+  private createObjects(response: GLTF[]) {
+    const statueGeometry = (response[0].scene.children[0] as THREE.Mesh)
+      .geometry;
+    const cherryGeometry = (response[1].scene.children[0] as THREE.Mesh)
+      .geometry;
+    const leafGeometry = (response[2].scene.children[0] as THREE.Mesh).geometry;
     const sphereGeometry = new THREE.SphereGeometry(6, 32, 16);
     const cubeGeometry = new THREE.BoxGeometry(9, 9, 9);
     const icosahedronGeometry = new THREE.IcosahedronGeometry(7, 0);
