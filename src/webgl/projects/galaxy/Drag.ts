@@ -32,19 +32,19 @@ export default class Drag {
     this.vPrev.copy(this.vCur); // 이전 좌표값을 현재 좌표값으로 overwirte
     this.vAdd.set(0, 0); // 현재 좌표값에 더해주는 좌표값을 (0, 0)으로 초기화시킴
     this.vTouchStart.set(
-      e instanceof TouchEvent ? e.touches[0].clientX : e.clientX,
-      e instanceof TouchEvent ? e.touches[0].clientY : e.clientY
+      e instanceof MouseEvent ? e.clientX : e.touches[0].clientX,
+      e instanceof MouseEvent ? e.clientY : e.touches[0].clientY
     ); // 터치(클릭) 시작 지점 좌표값을 지정
     this.isTouched = true;
   }
 
   touchMove(e: TouchEvent | MouseEvent) {
     // 이번에는 반대로 모바일을 사용하고 있을 경우, (즉, TouchEvent 일 경우) 이벤트 기본동작 실행 방지
-    if (e instanceof TouchEvent) e.preventDefault();
+    if (!(e instanceof MouseEvent)) e.preventDefault();
 
     // touch(mouse)move 이벤트가 발생한 x, y 좌표값을 구함
-    const x = e instanceof TouchEvent ? e.touches[0].clientX : e.clientX;
-    const y = e instanceof TouchEvent ? e.touches[0].clientY : e.clientY;
+    const x = e instanceof MouseEvent ? e.clientX : e.touches[0].clientX;
+    const y = e instanceof MouseEvent ? e.clientY : e.touches[0].clientY;
 
     if (this.isTouched === false) return; // move 이벤트가 발생했어도, touch(click)이 없었다면 이벤트핸들러를 종료함.
 
